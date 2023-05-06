@@ -4,6 +4,54 @@
 #Write a program that reads in a sequence of characters and prints them in reverse order, 
 using your implementation of Stack. 
 
+
+class Stack:
+    def __init__(self):
+        self.items = []
+
+    def push(self, item):
+        return self.items.append(item)
+
+    def pop(self):
+        if len(self.items)<1:
+            raise Exception ('empty stack')
+        else:
+            return self.items.pop()
+        
+
+    def size(self):
+        return len(self.items)
+
+    def __repr__(self):
+        return self.items
+
+if __name__== '__main__':
+
+    def reversedseq(sequence):
+        stack_rev = Stack()
+        for item in sequence:
+            stack_rev.push(item) 
+        seq_rev = '' 
+        for i in range(stack_rev.size()):
+            seq_rev = seq_rev + ' ' + str(stack_rev.pop())
+        return seq_rev
+
+
+s1 = [3,5,8,13,21,34]
+s2 = 'Violets'
+s3 = 'in girum imus nocte et consumimur Ignis'
+s4 = [(2,4), (2,8), (3,6)]
+s5 = 2,5,6,7
+
+
+print(reversedseq(s1)) #34 21 13 8 5 3
+print(reversedseq(s2)) #s t e l o i V
+print(reversedseq(s3)) #s i n g I   r u m i m u s n o c   t e   e t c o n   s u m i   m u r i g   n i
+print(reversedseq(s4)) #(3, 6) (2, 8) (2, 4)
+print(reversedseq(s5)) #7 6 5 2
+
+
+
 #Task 2
 #Write a program that reads in a sequence of characters,
 # and determines whether it's parentheses, 
