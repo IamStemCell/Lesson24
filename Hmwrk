@@ -105,3 +105,47 @@ print(symmetry(s3)) #True
 #Task 3
 #Extend the Stack to include a method called get_from_stack that searches and returns an element e from a stack. Any other element must remain on the stack respecting their order. Consider the case in which the element is not found - raise ValueError with proper info Message
 #Extend the Queue to include a method called get_from_stack that searches and returns an element e from a queue. Any other element must remain in the queue respecting their order. Consider the case in which the element is not found - raise ValueError with proper info Message
+
+
+class Stack:
+    def __init__(self):
+        self.items = []
+
+    def is_empty(self):
+        return self.items == []
+
+    def push(self, item):
+        self.items.append(item)
+       
+    def pop(self):
+        return self.items.pop()
+
+    def peek(self):
+        return self.items[-1]
+
+    def size(self):
+        return len(self.items)
+    
+    def get_from_stack(self,e):
+        for i in range(self.size()):
+            if self.items[i] == e:
+                result = self.items.pop(i)
+                return result
+        raise ValueError(f"Element {e} not found.")
+
+stack = Stack()
+stack.push('Blue')
+stack.push('Velvet')
+stack.push('Sky')
+
+q = stack.get_from_stack('Velvet')
+print(q)
+
+print(stack.pop())
+print(stack.pop())
+q = stack.get_from_stack('Vel')
+
+#Velvet
+#Sky
+#Blue
+#ValueError: Element Vel not found.
