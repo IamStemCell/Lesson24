@@ -57,6 +57,51 @@ print(reversedseq(s5)) #7 6 5 2
 # and determines whether it's parentheses, 
 #braces, and curly brackets are "balanced."
 
+class Stack():
+    def __init__(self):
+        self.items = []
+
+    def push(self, item):
+        return self.items.append(item)
+
+    def pop(self):
+        if len(self.items) < 1:
+            return None
+        else:
+            return self.items.pop()
+
+    def size(self):
+        return len(self.items)
+    
+    def is_empty(self):
+        return len(self.items) == 0
+
+
+def symmetry(sequence):
+    stack = Stack()
+    for item in sequence:
+        if item in '({[':
+            stack.push(item)
+        elif item in ')}]':
+            if stack.is_empty():
+                return False
+        if item == ']' and stack.pop() != '[':
+            return False
+        elif item == ')' and stack.pop() != '(':
+            return False
+        elif item == '}' and stack.pop() != '{':
+            return False 
+        
+    return stack.is_empty()
+
+s1 = '()'
+s2 = '[()'
+s3 = '[{}]'
+
+print(symmetry(s1)) #True
+print(symmetry(s2)) #False 
+print(symmetry(s3)) #True
+
 #Task 3
 #Extend the Stack to include a method called get_from_stack that searches and returns an element e from a stack. Any other element must remain on the stack respecting their order. Consider the case in which the element is not found - raise ValueError with proper info Message
 #Extend the Queue to include a method called get_from_stack that searches and returns an element e from a queue. Any other element must remain in the queue respecting their order. Consider the case in which the element is not found - raise ValueError with proper info Message
