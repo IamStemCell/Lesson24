@@ -25,7 +25,7 @@ class Stack:
     def __repr__(self):
         return self.items
 
-if __name__== '__main__':
+
 
     def reversedseq(sequence):
         stack_rev = Stack()
@@ -107,6 +107,7 @@ print(symmetry(s3)) #True
 #Extend the Queue to include a method called get_from_stack that searches and returns an element e from a queue. Any other element must remain in the queue respecting their order. Consider the case in which the element is not found - raise ValueError with proper info Message
 
 
+
 class Stack:
     def __init__(self):
         self.items = []
@@ -149,3 +150,48 @@ q = stack.get_from_stack('Vel')
 #Sky
 #Blue
 #ValueError: Element Vel not found.
+
+
+class Queue:
+    
+    def __init__(self):
+        self.items = []
+
+    def is_empty(self):
+        return self.items == []
+
+    def enqueue(self, item):
+        self.items.insert(0, item)
+
+    def dequeue(self):
+        return self.items.pop()
+    
+    def peek(self):
+        if not self.is_empty():
+            return self.items
+    
+    def size(self):
+        return len(self.items)
+
+    def get_from_stack(self, e):
+        
+        if e in self.items:
+           ind = self.items.index(e)
+           return self.items.pop(ind)
+        else:
+            raise ValueError(f"Element {e} not found in the current queue")
+
+q = Queue()
+
+q.enqueue(1)
+q.enqueue(2)
+q.enqueue(3)
+q.enqueue(4)
+q.enqueue(5)
+
+print(q.peek()) #[5, 4, 3, 2, 1]
+print(q.get_from_stack(5)) #5
+print(q.peek()) #[4, 3, 2, 1]
+print(q.get_from_stack(2)) #2
+print(q.peek()) #[4, 3, 1]
+print(q.get_from_stack(6)) #ValueError: 6 not found in the current queue
